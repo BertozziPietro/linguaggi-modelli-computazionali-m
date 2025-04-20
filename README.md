@@ -1,4 +1,4 @@
-# Linguaggi e Modelli Computaizonali M
+# Linguaggi e Modelli Computazionali M
 
 ## Professor Enrico Denti
 
