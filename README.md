@@ -25,6 +25,6 @@ Anno Accademico: 2024/2025
 1. [Scala e Kotlin: approfondimento da definire](./scala-kotlin/)  
     *(Argomento ancora in fase di definizione).*
 
-1. [JavaScript: vulnerabilità](./javascript-vulnerabilities/)  
+1. [JavaScript: linguaggio dinamico ma vulnerabile](./javascript-vulnerabilities/)  
     5.1 *Type coercion e JSFuck con Function.*  
     5.2 *Modello a prototipi e prototype pollution.*
