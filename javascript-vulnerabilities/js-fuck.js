@@ -1,3 +1,24 @@
+console.log(![]) //false
+console.log(!![]) //true
+
+console.log([][[]]) //undefined
+console.log(+[![]]) //NaN
+console.log(+[]) //0
+console.log(+!+[]) //1
+console.log(!+[]+!+[]) //2
+console.log([+!+[]]+[+[]]) //10
+
+console.log([]) //Array
+console.log(+[]) //Number
+console.log(![]) //Boolean
+console.log([]+[]) //String
+
+console.log((false+"")[1]);   // "a"
+
+console.log([]["filter"]) //Function
+console.log([]["map"]["constructor"]("x", "return x")(1)) //1
+console.log([]["find"]["constructor"]("return this")()) //globalThis
+
 // Full type coercion madness
 /*console.log(true + false)             // 1
 console.log(12 / "6")                 // 2
@@ -75,22 +96,4 @@ console.log(typeof(true)) //boolean
 console.log(NaN == NaN) //false
 console.log(undefined == null) //true
 console.log(undefined === null) //false
-
 */
-
-console.log(![]) //false
-console.log(!![]) //true
-console.log([][[]]) //undefined
-console.log(+[![]]) //NaN oppure console.log(+{}) //NaN con le {}
-console.log(+[]) //0
-console.log(+!+[]) //1
-console.log(!+[]+!+[]) //2
-console.log([+!+[]]+[+[]]) //10
-console.log([]) //Array
-console.log(+[])//Number
-console.log([]+[]) //String
-console.log(![]) //Boolean
-console.log((![]+[])[+!![]]) //"a"
-//console.log([]["filter"]) //Function
-//console.log([]["filter"]["constructor"]( CODE )()) //eval
-//console.log([]["filter"]["constructor"]("return this")()) //window

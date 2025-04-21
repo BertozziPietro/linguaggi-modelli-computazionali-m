@@ -25,8 +25,6 @@ Anno Accademico: 2024/2025
 1. [Scala e Kotlin: approfondimento da definire](./scala-kotlin/)  
     *(Argomento ancora in fase di definizione).*
 
-1. [JavaScript e TypeScript: peculiarità dei linguaggi e implicazioni in termini di sicurezza informatica](./javascript-typescript-vulnerabilities/)  
-    5.1 *Type coercion e JSFuck.*  
-    5.2 *Prototype pollution e general scope pollution.*  
-    5.3 *Function ed eval come strumenti di intercessione e riflessione.*  
-    5.4 *Implicazioni in termini di sicurezza web.*
+1. [JavaScript: vulnerabilità](./javascript-vulnerabilities/)  
+    5.1 *Type coercion e JSFuck con Function.*  
+    5.2 *Modello a prototipi e prototype pollution.*
