@@ -1,3 +1,9 @@
+// Generic trampoline
+function trampoline(fn) {
+    while (fn && typeof fn === 'function') fn = fn()
+    return fn
+}
+
 // Normal recursive function
 function specialSumRaw(n, partial = 0) {
     if (n === 0) return partial
@@ -10,13 +16,7 @@ function specialSumJumping(n, partial = 0) {
     return () => specialSumJumping(n - 1, partial + n)
 }
 
-// Generic trampoline
-function trampoline(fn) {
-    while (fn && typeof fn === 'function') fn = fn()
-    return fn
-}
-
-// Sugar wrapper
+// Entrypoint
 function specialSumTrampoline(n) {
     return trampoline(() => specialSumJumping(n))
 }
