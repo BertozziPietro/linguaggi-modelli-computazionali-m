@@ -24,8 +24,7 @@ function specialSumTrampoline(n) {
 // Usage
 console.log(specialSumRaw(5))      // 15
 console.log(specialSumRaw(500))    // 125250
-console.log(specialSumRaw(100000)) // RangeError: Maximum call stack size exceeded
-
+console.log(specialSumRaw(150000)) // RangeError: Maximum call stack size exceeded
 console.log(specialSumTrampoline(5))      // 15
 console.log(specialSumTrampoline(500))    // 125250
-console.log(specialSumTrampoline(100000)) // 5000050000
+console.log(specialSumTrampoline(150000)) // 11250075000

@@ -61,6 +61,9 @@ lib_managed/
 src_managed/
 .idea/
 *.iml
+.metals
+.scala-build
+.bsp
 
 # ========== Prolog ==========
 *.qlf
