@@ -17,14 +17,15 @@ Anno Accademico: 2024/2025
     2.2 *I limiti del TRO e i trampolini.*  
     2.3 *Esempi in JavaScript, Kotlin e Scala.*
 
-1. [Lambda expressions: struttura, uso e confronto tra linguaggi](./lambda-expressions/)  
-    3.1 *Introduzione al formalismo delle lambda expression.*  
-    3.2 *Lambda expression ad un argomento come sintassi espressiva e modulare (da rivalutare eventualmente).*  
-    3.3 *Esempi in JavaScript, Java, Kotlin e Scala.*
+1. [Scala: ](./scala/)  
+    3.1 *Curring*
+    3.2 *Call by Name*
+    3.3 *Block like sintax*
 
-1. [Scala: approfondimento da definire](./scala/)  
-    *(Argomento ancora in fase di definizione).*
+    3.1 *Costruire nuovi costrutti*
+    3.2 *Tratti*
+
 
 1. [JavaScript: linguaggio dinamico ma vulnerabile](./javascript/)  
-    5.1 *Type coercion e JSFuck con Function.*  
-    5.2 *Modello a prototipi e prototype pollution.*
+    4.1 *Type coercion e JSFuck con Function.*  
+    4.2 *Modello a prototipi e prototype pollution.*

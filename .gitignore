@@ -104,7 +104,7 @@ Thumbs.db
 .idea/
 *.iml
 *.vscode/
-*.log
+log*
 
 # ========== OS / File system ==========
 ehthumbs.db

@@ -25,10 +25,12 @@ def collatz(n: Long, steps: Long = 0): Trampoline[Long] =
     else More(() => collatzOdd(n, steps))
 
 // Usage
-def main(): Unit = {
+object trampoline {
+  def main(args: Array[String]): Unit = {
     val start1 = 27L
     println(s"Collatz($start1) ha terminato in ${runTrampoline(collatz(start1))} passi.")
 
     val start2 = 63728127L
     println(s"Collatz($start2) ha terminato in ${runTrampoline(collatz(start2))} passi.")
+  }
 }
