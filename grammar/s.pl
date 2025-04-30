@@ -3,8 +3,7 @@ accept(LIn, LOut) :-
     !.
 
 'S'([d | LIn], LOut) :-
-    'S'(LIn, L1),
-    'B'(L1, LOut).
+    'S'(LIn, [b | LOut]).
 
 'S'(LIn, LOut) :-
     'A'(LIn, L1),
@@ -18,8 +17,8 @@ accept(LIn, LOut) :-
 'B'([b | LIn], LOut) :-
     'B'(LIn, LOut).
 
-'B'([b | L], L).
+'B'([c | L], L).
 
-% ?- accept([d,d,a,a,b,b,b], []).     true
-% ?- accept([a,a,b,b], []).           true
+% ?- accept([d,d,a,a,c,b,b], []).     true
+% ?- accept([a,a,b,c], []).           true
 % ?- accept([d,b], []).               false
