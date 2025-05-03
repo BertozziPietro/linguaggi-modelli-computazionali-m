@@ -19,6 +19,9 @@ accept(LIn, LOut) :-
 
 'B'([c | L], L).
 
-% ?- accept([d,d,a,a,c,b,b], []).     true
-% ?- accept([a,a,b,c], []).           true
-% ?- accept([d,b], []).               false
+% ?- accept([d,d,a,a,c,b,b], []).
+% true
+% ?- accept([a,a,b,c], []).
+% true
+% ?- accept([d,b], []).
+% false

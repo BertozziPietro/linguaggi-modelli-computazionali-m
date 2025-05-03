@@ -1,112 +1,120 @@
-# JavaScript: Linguaggio Dinamico ma Vulnerabile
-##  Type Coercion e JSFuck con Function
-### 🔄 Type Coercion
-### 🧩 JSFuck con Function
-##  Modello a Prototipi e Prototype Pollution
-### 🧬 Modello a Prototipi
-### ⚠️ Prototype Pollution
+# Grammatica: analisi formale
 
-# Grammatiche: 
+## Presentazione della Grammatica in Esame
 
+```
 S → d S b | A B  
 A → A a | ε  
 B → b B | c
+```
 
-## Pumping Lemma
+## Pumping Lemma per Dimostrare che la Grammatica Non è Regolare
 
 🧠 Dimostrazione che il linguaggio non è regolare (Tipo 3)
 Ipotesi: Il linguaggio L generato dalla grammatica
-
-S → d S b | A B
-A → A a | ε
-B → b B | c
-
 è regolare.
-
 Allora, per il Pumping Lemma per i linguaggi regolari,
 esiste un intero N (pumping length) tale che:
-
 Per ogni stringa z ∈ L con |z| ≥ N,
 esiste una decomposizione z = x y w tale che:
-
 |xy| ≤ N
-
 |y| ≥ 1
-
 Per ogni i ≥ 0, x yⁱ w ∈ L
-
 🔍 Scelta della stringa
 Sia z = dⁿ aⁿ cⁿ bⁿ ∈ L, con n ≥ N
-
 Questa stringa è derivabile da:
-
 S → d S b → d d ... d A B b ... b
                 → dⁿ A B bⁿ
                 → dⁿ aⁿ cⁿ bⁿ
-
 🧩 Decomposizione z = x y w
 Poiché |xy| ≤ N, e i primi N simboli di z sono solo d,
 abbiamo: y ∈ d⁺
-
 🚫 Pompiamo con i = 0
 Otteniamo la stringa x y⁰ w = x w
 Questa ha meno d, ma ancora aⁿ cⁿ bⁿ
-
 Quindi la struttura dⁿ aⁿ bⁿ bⁿ è distrutta
 ⇒ x y⁰ w ∉ L
-
 ❌ Contraddizione
 Esiste una stringa in L che non può essere pompata
 ⇒ Il pumping lemma non è soddisfatto
-
 ✅ Conclusione
 Il linguaggio non è regolare ⇒ non è di Tipo 3
 
-regolari se presi da soli
-A → A a | ε  A=a*
-B → b B | c  B=b*c
+## Esempio in Prolog di Riconoscitore a Stati Finiti
 
-adesso devo eliminare la ricorsione sinistra che c'è in 
-A → A a | ε
+Due delle produzioni, se prese singolarmente, sono regolari.  
+Non sono regolari se prese assieme, poiché la prima è regolare a sinistra e la seconda è regolare a destra.
+```
+A → A a | ε     A = a*
+B → b B | c     B = b*c
+```
 
-in generale
-S -> vS | l
-diventa
-S -> l S'
-S' -> vS' | ε
+Usiamo la prima produzione per mostrare come si possa realizzare un [riconoscitore a stati finiti scritto in prolog](a.pl).
+L'implementazione è logicamente più vicina all'idea di automa e meno all'idea di linguaggio.
 
-nel nostro caso
-A  → ε A'
+## Analisi LL(1) Dopo Opportune Trasformazioni
+
+### Eliminazione della Ricorsione Sinistra
+
+Un linguaggio definito da una grammatica con ricorsione sinistra non può essere analizzato con successo da un analizzatore LL(1).
+Procediamo quindi con l’eliminazione della ricorsione sinistra.
+
+```
+# generalmente si può trasformare questa
+S  → v S | l
+# in questo modo
+S  → S' l
+S' → v S' | ε
+
+# nel nostro caso
+A  → a A | ε
+# procediamo allo stesso modo
+A  → A' ε
 A' → a A' | ε
-o più semplicemente
-A -> a A | ε
+# e semplifichiamo ulteriormente perchè dalla prima produzioni A e A' risultano uguali
+A  → a A | ε
+```
 
+### Analisi LL(1)
 
+```
 S  → d S b | A B  
 A  → a A | ε  
 B  → b B | c
 
-adesso calcoliamo i first e i floow e i dss della grammatica candidata ad essere ll1
-
 FIRST(S) = { d, a, b, c }
 FIRST(A) = { a, ε }
 FIRST(B) = { b, c }
-
 
 FOLLOW(S) = { $, b }
 FOLLOW(A) = { b, c }
 FOLLOW(B) = { $, b }
 
 DSS(S → d S b) = { d }
-DSS(S → A B) = FIRST(A) ∪ (FIRST(B) se ε ∈ FIRST(A)) = { a } ∪ { b, c } = { a, b, c }
-
-DSS(A → a A) = { a }0
+DSS(S → A B) = SS(AB) = { a, b, c }
+DSS(A → a A) = { a }
 DSS(A → ε) = FOLLOW(A) = { b, c }
-
 DSS(B → b B) = { b }
 DSS(B → c) = { c }
+```
 
-adesso analisi lr0 della grammatica iniziale di partenza
+Una condizione necessaria perché una grammatica sia LL(1) è che gli insiemi di starter symbols relativi alle parti destre di uno stesso metasimbolo siano mutuamente disgiunti.
+Nel nostro caso, tale condizione è soddisfatta: l’analisi LL(1) ha quindi avuto successo.
+
+Tuttavia, per raggiungere questo risultato, è stato necessario eliminare la ricorsione sinistra.
+Se l’obiettivo è costruire un semplice riconoscitore, questa trasformazione è accettabile.
+Al contrario, se si intende realizzare un interprete o un compilatore, la trasformazione può risultare problematica, in quanto modifica la struttura delle derivazioni e quindi la semantica del linguaggio.
+
+Proseguiamo, prima con un riconoscitore in prolog, e poi con l’analisi LR.
+
+## Esempio in Prolog di Push-Down Automaton
+
+Usiamo la grammatica senza ricorsione sinistra in un [PDA deterministico scritto in Prolog](s.pl).
+
+## Analisi LR(0) e Identificazione dei Conflitti
+## Analisi SRL e Classificazione della Grammatica
+
+adesso analisi LR(0) della grammatica iniziale di partenza
 
 Z -> S
 S  → d S b | A B  
