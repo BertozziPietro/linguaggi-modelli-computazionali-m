@@ -1,0 +1,35 @@
+grammar Level3;
+
+s : a ;
+a : b | c | d ;
+b : F d T a | F d T a E a ;
+c : W d D a ;
+d : f | e f ;
+e : EXCL ;
+f : h | f g h ;
+g : AND | OR ;
+h : j | h i j ;
+i : LT | GT | EQ ;
+j : l | j k l ;
+k : MUL | DIV ;
+l : n | l m n ;
+m : ADD | SUB ;
+n : C ;
+
+F   : 'f' ;
+T   : 't' ;
+E   : 'e' ;
+W   : 'w' ;
+D   : 'd' ;
+EXCL : '!' ;
+AND : '&' ;
+OR  : '|' ;
+LT  : '<' ;
+GT  : '>' ;
+EQ  : '=' ;
+MUL : '*' ;
+DIV : '/' ;
+ADD : '+' ;
+SUB : '-' ;
+C   : 'c' ;
+WS : [ \t\r\n]+ -> skip ;

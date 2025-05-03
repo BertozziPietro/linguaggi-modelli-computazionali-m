@@ -1,0 +1,210 @@
+:root {
+    --blue1: #3399ff;
+    --blue2: #e6f7ff;
+    --orange1: #ff6600;
+    --orange2: #fff7e6;
+    --red1: #b33c3c;
+    --red2: #ffe6e6;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #e6d8b7;
+}
+header {
+    text-align: center;
+    font-size: 1.3rem;
+    padding: 1px;
+    background-color: #333;
+    color: white;
+}
+.blue {
+    border-left: 5px solid var(--blue1);
+    background-color: var(--blue2);
+}
+.orange {
+    border-left: 5px solid var(--orange1);
+    background-color: var(--orange2);
+}
+.red {
+    border-left: 5px solid var(--red1);
+    background-color: var(--red2);
+}
+
+.presentation {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    padding: 5px;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+.poem {
+    flex: 1;
+    text-align: center;
+    margin: 20px;
+    padding: 20px;
+    font-family: "Georgia", serif;
+    font-style: italic;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #555;
+}
+.task-guidelines-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.task {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 20px;
+    padding: 20px;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.guidelines {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 20px;
+    padding: 20px;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.task,
+.guidelines {
+    flex: 1;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+}
+.productions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 5px;
+    margin: 20px;
+    gap: 15px;
+}
+.productions label {
+    font-size: 1.2rem;
+    padding: 5px 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+}
+.productions input[type="checkbox"] {
+    margin-right: 5px;
+}
+.generate {
+    display: flex;
+    justify-content: center;
+    margin: 20px auto;
+    gap: 10px;
+}
+.generate input[type="text"] {
+    width: 80%;
+    max-width: 500px;
+    font-size: 1.1rem;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.generate button {
+    width: 50%;
+    max-width: 200px;
+    font-size: 1.1rem;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    background-color: #007bff;
+    transition: background-color 0.3s ease;
+}
+.generate button:hover {
+    background-color: #0056b3;
+}
+
+.outputs {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+.hint {
+    text-align: center;
+    margin: 10px;
+    padding: 20px;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.log {
+    text-align: center;
+    margin: 10px;
+    padding: 20px;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.flag {
+    text-align: center;
+    margin: 10px;
+    padding: 20px;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.hint,
+.log,
+.flag {
+    flex: 1;
+}
+.download {
+    font-weight: bold;
+    padding: 10px 35px;
+    border-radius: 10px;
+    text-decoration: none;
+}
+.download.inblue {
+    color: var(--blue1);
+    background-color: var(--blue2);
+}
+.download.inorange {
+    color: var(--orange1);
+    background-color: var(--orange2);
+}
+.download.inred {
+    color: var(--red1);
+    background-color: var(--red2);
+}
+.download.inblue:hover {
+    color: var(--blue2);
+    background-color: var(--blue1);
+}
+.download.inorange:hover {
+    color: var(--orange2);
+    background-color: var(--orange1);
+}
+.download.inred:hover {
+    color: var(--red2);
+    background-color: var(--red1);
+}

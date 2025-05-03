@@ -1,0 +1,16 @@
+services:
+  ambiguous-collisions:
+    image: cybersecnatlab/challenge-jail:python-3.12-alpine@sha256:2200ef5a11640c31c15fa5f700771e81f3b3efea5a590b879d69332007a095fe
+    restart: unless-stopped
+    init: true
+    privileged: true
+    ports:
+      - "1337:1337"
+    volumes:
+      - "./ambiguous-collisions.py:/home/user/chall:ro"
+
+    command: ["/home/user/chall"]
+    environment:
+      
+      - "FLAG=UlisseCTF{h0w_m4ny_pr0duc710ns_d03s_7h3_3ngl1sh_l4ngu4g3_h4v3?}"
+      - "FLAG_IN_ENV=true"

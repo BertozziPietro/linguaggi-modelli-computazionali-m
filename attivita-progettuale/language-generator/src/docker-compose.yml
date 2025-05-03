@@ -1,0 +1,7 @@
+services:
+  language_generator:
+    build: .
+    ports:
+      - "5000:80"
+    environment:
+      - FLAG=UlisseCTF{1f_th3r3_w4s_4_w3ll_m4d3_l4ngu4g3_w3_w0uldn7_us3_th3_07h3rs}

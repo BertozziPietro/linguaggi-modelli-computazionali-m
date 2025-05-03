@@ -117,3 +117,7 @@ $RECYCLE.BIN/
 *.orig
 *.rej
 *.patch
+
+# ========== Antlr ==========
+**/test/**
+!**/test/*.g4

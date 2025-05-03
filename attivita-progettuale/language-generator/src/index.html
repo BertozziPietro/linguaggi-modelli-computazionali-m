@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <meta charset = "UTF-8">
+    <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" href = "style.css">
+    <script src = "validation.js"></script>
+    <title>Language Generator</title>
+</head>
+<body>
+    <header>
+        <h1>Language Generator</h1>
+    </header>
+    <main>
+        <section class = "presentation">
+            <div class = "poem blue">
+                "There are so many languages, how can I choose?  <br>
+		Better fast or precise? Put yourself in my shoes!<br>
+		C was my first love, but now feels so cold,      <br>
+		Rust whispers safety, its virtues retold.        <br>
+		What if I dare and build one of my own?          <br>
+		Would it sing in the sun or crumble like stone?  <br>
+		Python’s my crutch; I use it for all,            <br>
+		yet JavaScript’s webs still call and enthrall.   <br>
+		Kotlin’s concise, Swift’s clean and clear,       <br>
+		while Go carves paths engineers hold dear.       <br>
+		Yet, in this chaos, one truth I hold tight:      <br>
+		the best language depends on the task in sight." <br>
+		Pietro Bertozzi
+            </div>
+            <div class = task-guidelines-container >
+                <div class = "task orange">
+                    Damn! I had to prepare a language, but I got
+                    distracted and I wasted hours writing a poem...
+                    Why don't you prepare the language for this challenge?
+                    I have always prefererd peoms to challenges anyway...
+                </div>
+                <div class = "guidelines red">
+                    If I were in your shooes, 
+                    I would follow this guidelines:
+                    1) keep a file with notes at hand
+                    2) start from the beginning
+                    3) the journey is more important than the destination
+                    4) it all depends on your needs
+                    5) continue until getflag
+                </div>
+            </div>
+        </section>
+        <section class = "inputs">
+	    <form action = "grammar_generator.php" method = "post"
+	          id = "grammarForm" onsubmit = "return validate(event)">
+		<div class = "productions">
+		    <label><input type = "checkbox" name = "A">A: pL | ag</label>
+		    <label><input type = "checkbox" name = "B">B: cLK | sH</label>
+		    <label><input type = "checkbox" name = "C">C: p | fE</label>
+		    <label><input type = "checkbox" name = "D">D: fl | ZhK</label>
+		    <label><input type = "checkbox" name = "E">E: lY | aR</label>
+		    <label><input type = "checkbox" name = "F">F: plS</label>
+		    <label><input type = "checkbox" name = "G">G: gP | GtrT</label>
+		    <label><input type = "checkbox" name = "H">H: in | hW</label>
+		    <label><input type = "checkbox" name = "I">I: wMG | l</label>
+		    <label><input type = "checkbox" name = "J">J: g | e | t | ε</label>
+		    <label><input type = "checkbox" name = "K">K: loG | Jf</label>
+		    <label><input type = "checkbox" name = "L">L: lVr | leaS</label>
+		    <label><input type = "checkbox" name = "M">M: lo | BA</label>
+		    <label><input type = "checkbox" name = "N">N: cOG | geX</label>
+		    <label><input type = "checkbox" name = "O">O: han | QI</label>
+		    <label><input type = "checkbox" name = "P">P: a | e | o | ε</label>
+		    <label><input type = "checkbox" name = "Q">Q: So | tD | g</label>
+		    <label><input type = "checkbox" name = "R">R: hint</label>
+		    <label><input type = "checkbox" name = "S">S: sh | seHt</label>
+		    <label><input type = "checkbox" name = "T">T: aUal | ε</label>
+		    <label><input type = "checkbox" name = "U">U: vVs</label>
+		    <label><input type = "checkbox" name = "V">V: ea | ho | er</label>
+		    <label><input type = "checkbox" name = "W">W: in | owK</label>
+		    <label><input type = "checkbox" name = "X">X: pK | tra</label>
+		    <label><input type = "checkbox" name = "Y">Y: GQY | A</label>
+		    <label><input type = "checkbox" name = "Z">Z: hV | sV</label>
+		</div>
+		<div class = "generate">
+		    <input type = "text" id = "languageName" name = "languageName"
+		           placeholder = "Enter the name of your new language" required>
+		    <button type = "submit">Generate</button>
+		</div>
+	    </form>
+	</section>
+        <section class = "outputs">
+        <div class = "hint blue">
+            <a href = "download.php?id=1" class = "download inblue">hint.txt</a>
+        </div>
+        <div class = "log orange">
+            <a href = "download.php?id=2" class = "download inorange">log.txt</a>
+        </div>
+        <div class = "flag red">
+            <a href = "download.php?id=3" class = "download inred">flag.txt</a>
+        </div>
+        </section>
+    </main>
+</body>
+</html>

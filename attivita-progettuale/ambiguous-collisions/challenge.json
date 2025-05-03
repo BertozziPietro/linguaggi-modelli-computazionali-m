@@ -1,0 +1,32 @@
+{
+  "title": "TODO - Title for misc01",
+  "description": "TODO Description (choose nc or http)\n\nThis is a remote challenge, you can connect with:\n\n`nc todo.challs.todo.it 1337`\n\nSite: [http://todo.challs.todo.it](http://todo.challs.todo.it)",
+  "authors": [
+    "TODO Nome Cognome <@nickname>"
+  ],
+  "tags": [
+    "misc"
+  ],
+  "hiddenTags": [],
+  "order": 0,
+  "flags": [
+    "^flag\\{todo\\}$"
+  ],
+  "scoring": {
+    "type": "static",
+    "score": 100
+  },
+  "files": [],
+  "hints": [],
+  "endpoint": {
+    "type": "tcp",
+    "host": "todo.challs.todo.it",
+    "port": 1337
+  },
+  "checker": {
+    "enabled": true,
+    "config": {
+      "timeout": 10
+    }
+  }
+}
