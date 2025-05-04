@@ -10,35 +10,20 @@ B → b B | c
 
 ## Pumping Lemma per Dimostrare che la Grammatica Non è Regolare
 
-🧠 Dimostrazione che il linguaggio non è regolare (Tipo 3)
-Ipotesi: Il linguaggio L generato dalla grammatica
-è regolare.
-Allora, per il Pumping Lemma per i linguaggi regolari,
-esiste un intero N (pumping length) tale che:
-Per ogni stringa z ∈ L con |z| ≥ N,
-esiste una decomposizione z = x y w tale che:
-|xy| ≤ N
-|y| ≥ 1
-Per ogni i ≥ 0, x yⁱ w ∈ L
-🔍 Scelta della stringa
-Sia z = dⁿ aⁿ cⁿ bⁿ ∈ L, con n ≥ N
-Questa stringa è derivabile da:
-S → d S b → d d ... d A B b ... b
-                → dⁿ A B bⁿ
-                → dⁿ aⁿ cⁿ bⁿ
-🧩 Decomposizione z = x y w
-Poiché |xy| ≤ N, e i primi N simboli di z sono solo d,
-abbiamo: y ∈ d⁺
-🚫 Pompiamo con i = 0
-Otteniamo la stringa x y⁰ w = x w
-Questa ha meno d, ma ancora aⁿ cⁿ bⁿ
-Quindi la struttura dⁿ aⁿ bⁿ bⁿ è distrutta
-⇒ x y⁰ w ∉ L
-❌ Contraddizione
-Esiste una stringa in L che non può essere pompata
-⇒ Il pumping lemma non è soddisfatto
-✅ Conclusione
-Il linguaggio non è regolare ⇒ non è di Tipo 3
+Se L è un linguaggio di Tipo 3, esiste un intero N tale che, per ogni stringa z di lunghezza almeno pari a N:
+- z può essere riscritta come: z = xyw |z| >= N
+- la parte centrale xy ha lunghezza limitata: |xy| <= N
+- y non è nulla: |y| >= 1
+- la parte centrale può essere pompata quanto si vuole ottenendo sempre altre frasi del linguaggio; ovvero, xy^{i}w con i naturale.
+
+Supponiamo per assurdo che il linguaggio L generato dalla grammatica sia regolare e proviamo ad applicare il Pumping Lemma.
+
+Sia z = dⁿ aᵐ bᵖ c bⁿ ∈ L, con n, m, p ≥ N  
+Dato che |xy| ≤ N, y è una sottostringa formata solo da simboli d.
+
+Supponiamo di pompare con i = 0: otteniamo z' = xw, con meno d ma lo stesso numero di b.  
+Quindi z' non appartiene al linguaggio.  
+La contraddizione indica che il pumping lemma non è soddisfatto e che quindi L non è regolare.  
 
 ## Esempio in Prolog di Riconoscitore a Stati Finiti
 
@@ -49,14 +34,14 @@ A → A a | ε     A = a*
 B → b B | c     B = b*c
 ```
 
-Usiamo la prima produzione per mostrare come si possa realizzare un [riconoscitore a stati finiti scritto in prolog](a.pl).
+Usiamo la prima produzione per mostrare come si possa realizzare un [riconoscitore a stati finiti scritto in prolog](a.pl).  
 L'implementazione è logicamente più vicina all'idea di automa e meno all'idea di linguaggio.
 
 ## Analisi LL(1) Dopo Opportune Trasformazioni
 
 ### Eliminazione della Ricorsione Sinistra
 
-Un linguaggio definito da una grammatica con ricorsione sinistra non può essere analizzato con successo da un analizzatore LL(1).
+Un linguaggio definito da una grammatica con ricorsione sinistra non può essere analizzato con successo da un analizzatore LL(1).  
 Procediamo quindi con l’eliminazione della ricorsione sinistra.
 
 ```
@@ -112,7 +97,6 @@ Proseguiamo, prima con un riconoscitore in prolog, e poi con l’analisi LR.
 Usiamo la grammatica senza ricorsione sinistra in un [PDA deterministico scritto in Prolog](s.pl).
 
 ## Analisi LR(0) e Identificazione dei Conflitti
-## Analisi SRL e Classificazione della Grammatica
 
 adesso analisi LR(0) della grammatica iniziale di partenza
 
@@ -143,6 +127,8 @@ CTXLR(0)(B->bB) = { d*A b B, b* b B }
 CTXLR(0)(B->c) = { d*A c, b* c }
 
 ci sono due conflitti shift reduce in A.
+
+## Analisi SRL
 
 adesso analisi srl 
 
