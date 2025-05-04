@@ -73,7 +73,7 @@ FIRST(B) = { b, c }
 
 FOLLOW(S) = { $, b }
 FOLLOW(A) = { b, c }
-FOLLOW(B) = { $, b }
+FOLLOW(B) = FOLLOW(S) = { $, b }
 
 DSS(S → d S b) = { d }
 DSS(S → A B) = SS(AB) = { a, b, c }
@@ -94,52 +94,56 @@ Proseguiamo, prima con un riconoscitore in prolog, e poi con l’analisi LR.
 
 ## Esempio in Prolog di Push-Down Automaton
 
-Usiamo la grammatica senza ricorsione sinistra in un [PDA deterministico scritto in Prolog](s.pl).
+Usiamo la grammatica senza ricorsione sinistra in un [PDA deterministico scritto in Prolog](s.pl).  
+Questa implementazione Prolog è semplice ed intuitiva, da leggere e da scievre, ma è limitata ai linguaggi LL(1).
 
 ## Analisi LR(0) e Identificazione dei Conflitti
 
-adesso analisi LR(0) della grammatica iniziale di partenza
+L'aggiunta della produzione Z → S in una grammatica per l'analisi LR è prassi standard per due motivi.
+In primo luogo, garantisce che la riduzione a Z coincida con l'accept della frase.
+In secondo luogo, fornisce un caso base nel calcolo dei contesti sinistri, che è tipicamente ricorsivo.
 
-Z -> S
-S  → d S b | A B  
-A  → a A | ε  
-B  → b B | c
+```
+Z → S
+S → d S b | A B  
+A → A a | ε  
+B → b B | c
 
 LEFTCTXLR(0)(Z) = { ε }
-LEFTCTXLR(0)(S) <- LEFTCTXLR(0)(Z) * { ε }
-LEFTCTXLR(0)(S) <- LEFTCTXLR(0)(S) * { d }
-LEFTCTXLR(0)(A) <- LEFTCTXLR(0)(S) * { ε }
-LEFTCTXLR(0)(A) <- LEFTCTXLR(0)(A) * { a }
-LEFTCTXLR(0)(B) <- LEFTCTXLR(0)(S) * { A }
-LEFTCTXLR(0)(B) <- LEFTCTXLR(0)(B) * { b }
-
+LEFTCTXLR(0)(S) ⊇ LEFTCTXLR(0)(Z) • { ε }
+LEFTCTXLR(0)(S) ⊇ LEFTCTXLR(0)(S) • { d }
+LEFTCTXLR(0)(A) ⊇ LEFTCTXLR(0)(S) • { ε }
+LEFTCTXLR(0)(A) ⊇ LEFTCTXLR(0)(A) • { ε }
+LEFTCTXLR(0)(B) ⊇ LEFTCTXLR(0)(S) • { A }
+LEFTCTXLR(0)(B) ⊇ LEFTCTXLR(0)(B) • { b }
 LEFTCTXLR(0)(Z) = { ε }
 LEFTCTXLR(0)(S) = { d* }
-LEFTCTXLR(0)(A) = { d*, a* }
-LEFTCTXLR(0)(B) = { d*A, b* }
+LEFTCTXLR(0)(A) = { d* }
+LEFTCTXLR(0)(B) = { d* A b* }
 
-CTXLR(0)(Z->S) = { S }
-CTXLR(0)(S->dSb) = { d*dSb } = { d⁺ S b }
-CTXLR(0)(S->AB) = { d* A B }
-CTXLR(0)(A->aA) = { d* a A, a* a A }
-CTXLR(0)(A->ε) = { d*, a* }
-CTXLR(0)(B->bB) = { d*A b B, b* b B }
-CTXLR(0)(B->c) = { d*A c, b* c }
+CTXLR(0)(Z → S)     = { S }
+CTXLR(0)(S → d S b) = { d* d S b } = { d⁺ S b }
+CTXLR(0)(S → AB )   = { d* A B }
+CTXLR(0)(A → a A)   = { d* a A } = { d* a A }
+CTXLR(0)(A → ε)     = { d* }
+CTXLR(0)(B → b B)   = { d* A b* b B } = { d* A b⁺ B }
+CTXLR(0)(B → c)     = { d* A b* c }
+```
 
-ci sono due conflitti shift reduce in A.
+Dalle produzione di A → ε risultano numerosi conflitti: il contesto in questione è prefisso proprio del contesto di molte altre produzioni.  
+La grammatica non è LR(0).
 
 ## Analisi SRL
 
-adesso analisi srl 
-
-Z -> S
-S  → d S b | A B  
-A  → a A | ε  
-B  → b B | c
+```
+Z → S
+S → d S b | A B  
+A → A a | ε  
+B → b B | c
 
 FOLLOW(Z) = { $ }
 FOLLOW(S) = { b, $ }
-FOLLOW(A) = { b, c }
+FOLLOW(A) = { b, c, a }
 FOLLOW(B) = { b, $ }
 
 SLR(1)CTX(P → α) = CTXLR(0)(P → α) × FOLLOW(P)
@@ -178,3 +182,4 @@ B → c
 CTXLR(0) = (d* A ∪ b*) c
 FOLLOW(B) = { b, $ }
 SLR(1)CTX = (d* A ∪ b*) c (b, $)
+```
