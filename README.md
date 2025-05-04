@@ -20,7 +20,7 @@ Il titolo della attività progettuale realizzata è [Challenge a tema: Linguaggi
     1.4 *Analisi LL(1) dopo opportune trasformazioni.*  
     1.5 *Esempio in Prolog di push-down automaton.*  
     1.6 *Analisi LR(0) e identificazione dei conflitti.*  
-    1.7 *Analisi SRL.*
+    1.7 *Analisi SRL(1).*
 
 1. [Ricorsione: tail-recursion, TRO e trampolini](./recursion/)  
     2.1 *Costrutti linguistici e processi computazionali sottostanti e tail recursion.*  

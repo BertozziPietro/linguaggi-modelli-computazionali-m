@@ -14,16 +14,15 @@ Se L è un linguaggio di Tipo 3, esiste un intero N tale che, per ogni stringa z
 - z può essere riscritta come: z = xyw |z| >= N
 - la parte centrale xy ha lunghezza limitata: |xy| <= N
 - y non è nulla: |y| >= 1
-- la parte centrale può essere pompata quanto si vuole ottenendo sempre altre frasi del linguaggio; ovvero, xy^{i}w con i naturale.
+- xy^{i}w con i naturale ∈ L.
 
-Supponiamo per assurdo che il linguaggio L generato dalla grammatica sia regolare e proviamo ad applicare il Pumping Lemma.
-
+Supponiamo per assurdo che il linguaggio L generato dalla grammatica sia regolare appichiamo il Pumping Lemma.
 Sia z = dⁿ aᵐ bᵖ c bⁿ ∈ L, con n, m, p ≥ N  
 Dato che |xy| ≤ N, y è una sottostringa formata solo da simboli d.
 
-Supponiamo di pompare con i = 0: otteniamo z' = xw, con meno d ma lo stesso numero di b.  
+Supponiamo di pompare con i = 0: otteniamo z', con meno d iniziali ma lo stesso numero di b finali.  
 Quindi z' non appartiene al linguaggio.  
-La contraddizione indica che il pumping lemma non è soddisfatto e che quindi L non è regolare.  
+La contraddizione indica che il pumping lemma non è soddisfatto e quindi L non è regolare.  
 
 ## Esempio in Prolog di Riconoscitore a Stati Finiti
 
@@ -45,19 +44,15 @@ Un linguaggio definito da una grammatica con ricorsione sinistra non può essere
 Procediamo quindi con l’eliminazione della ricorsione sinistra.
 
 ```
-# generalmente si può trasformare questa
-S  → v S | l
-# in questo modo
-S  → S' l
-S' → v S' | ε
+A  → A a | ε
 
-# nel nostro caso
-A  → a A | ε
-# procediamo allo stesso modo
-A  → A' ε
-A' → a A' | ε
-# e semplifichiamo ulteriormente perchè dalla prima produzioni A e A' risultano uguali
-A  → a A | ε
+A  → ε | ε A'
+A' → a | a A'
+
+A  → ε | A'
+A' → a | a A'
+
+A  → a A | ε 
 ```
 
 ### Analisi LL(1)
@@ -95,7 +90,7 @@ Proseguiamo, prima con un riconoscitore in prolog, e poi con l’analisi LR.
 ## Esempio in Prolog di Push-Down Automaton
 
 Usiamo la grammatica senza ricorsione sinistra in un [PDA deterministico scritto in Prolog](s.pl).  
-Questa implementazione Prolog è semplice ed intuitiva, da leggere e da scievre, ma è limitata ai linguaggi LL(1).
+Questa implementazione Prolog è semplice ed intuitiva, ma è limitata ai linguaggi LL(1).
 
 ## Analisi LR(0) e Identificazione dei Conflitti
 
@@ -123,8 +118,8 @@ LEFTCTXLR(0)(B) = { d* A b* }
 
 CTXLR(0)(Z → S)     = { S }
 CTXLR(0)(S → d S b) = { d* d S b } = { d⁺ S b }
-CTXLR(0)(S → AB )   = { d* A B }
-CTXLR(0)(A → a A)   = { d* a A } = { d* a A }
+CTXLR(0)(S → AB)    = { d* A B }
+CTXLR(0)(A → a A)   = { d* a A }
 CTXLR(0)(A → ε)     = { d* }
 CTXLR(0)(B → b B)   = { d* A b* b B } = { d* A b⁺ B }
 CTXLR(0)(B → c)     = { d* A b* c }
@@ -133,7 +128,7 @@ CTXLR(0)(B → c)     = { d* A b* c }
 Dalle produzione di A → ε risultano numerosi conflitti: il contesto in questione è prefisso proprio del contesto di molte altre produzioni.  
 La grammatica non è LR(0).
 
-## Analisi SRL
+## Analisi SRL(1)
 
 ```
 Z → S
@@ -141,45 +136,20 @@ S → d S b | A B
 A → A a | ε  
 B → b B | c
 
-FOLLOW(Z) = { $ }
-FOLLOW(S) = { b, $ }
-FOLLOW(A) = { b, c, a }
-FOLLOW(B) = { b, $ }
+FOLLOW1(Z) = { $ }
+FOLLOW1(S) = { b, $ }
+FOLLOW1(A) = { b, c, a }
+FOLLOW1(B) = { b, $ }
 
-SLR(1)CTX(P → α) = CTXLR(0)(P → α) × FOLLOW(P)
+CTXSLR(1)(Z → S)     = { S } • { ε } = { S }
+CTXSLR(1)(S → d S b) = { d⁺ S b } • { b, $ } = { d⁺ S b b + d⁺ S b $ } 
+CTXSLR(1)(S → AB)    = { d* A B } • { b, $ } = { d* A B b + d* A B $ }
+CTXSLR(1)(A → a A)   = { d* a A } • { b, c, a } = { d* a A b + d* a A c + d* a A a}
+CTXSLR(1)(A → ε)     = { d* } • { b, c, a } = { d* b + d* c + d* a }
+CTXSLR(1)(B → b B)   = { d* A b⁺ B } • { b, $ } = { d* A b⁺ B b + d* A b⁺ B $}
+CTXSLR(1)(B → c)     = { d* A b* c } • { b, $ } = { d* A b⁺ c b + d* A b⁺ c $}
 
-Z → S
-CTXLR(0) = S
-FOLLOW(Z) = { $ }
-SLR(1)CTX = S ($)
-
-S → d S b
-CTXLR(0) = d⁺ S b
-FOLLOW(S) = { b, $ }
-SLR(1)CTX = d⁺ S b (b, $)
-
-S → A B
-CTXLR(0) = d* A B
-FOLLOW(S) = { b, $ }
-SLR(1)CTX = d* A B (b, $)
-
-A → a A
-CTXLR(0) = (d* ∪ a*) a A
-FOLLOW(A) = { b, c }
-SLR(1)CTX = (d* ∪ a*) a A (b, c)
-
-A → ε
-CTXLR(0) = d* ∪ a*
-FOLLOW(A) = { b, c }
-SLR(1)CTX = (d* ∪ a*) (b, c)
-
-B → b B
-CTXLR(0) = (d* A ∪ b*) b B
-FOLLOW(B) = { b, $ }
-SLR(1)CTX = (d* A ∪ b*) b B (b, $)
-
-B → c
-CTXLR(0) = (d* A ∪ b*) c
-FOLLOW(B) = { b, $ }
-SLR(1)CTX = (d* A ∪ b*) c (b, $)
+A colpo d'occhio potrebbe sembrare che le stringhe d* a appartenenti al contesto di A → ε possano collidere con le stringhe appartenenti al contato di A → a A.
+In realtà perchè una stringa sia prefisso proprio di un altra è necessario che il simbolo che segue sia un terminale; e non è questo il caso.
+La grammatica è SLR(1).
 ```
