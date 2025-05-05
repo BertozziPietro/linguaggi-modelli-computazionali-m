@@ -19,7 +19,7 @@ Tuttavia, non tutti i linguaggi supportano TRO:
 
 Quando il linguaggio non forninsce nativamente TRO, si può utilizzare un trampolino.
 
-## 💻 Esempi in Javascript, Kotlin e Scala
+## 💻 Esempi in Javascript e Kotlin
 
 Per prima cosa, ecco un [trampolino in Javascript](trampoline.js), un linguaggio che non dispone di TRO.  
 Si noti come l'implementazione è particolarmente semplice perché il linguaggio è loosely-typed.
@@ -29,6 +29,3 @@ Nel caso di linguaggi strongly typed l'implementaizone è più complessa; il cas
 
 Segue ora un [esempio in Kotlin](trampoline.kt), linguaggio in cui la TRO è disponibile su richiesta.  
 Si utilizza `tailrec` ottimizzare con TRO il trampolino stesso, che alterna le diverse funzioni che si susseguono l'una all'altra.
-
-Infine, un ultimo [esempio in Scala](trampoline.scala) simile al precedente.  
-Si noti come, in Scala, non è necessario essere a conoscenza di tutte le considerazioni fatte fino ad ora per beneficiarne.

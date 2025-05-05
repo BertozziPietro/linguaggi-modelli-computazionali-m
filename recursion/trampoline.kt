@@ -25,9 +25,8 @@ fun collatz(n: Long, steps: Long = 0): Trampoline<Long> =
 
 // Usage
 fun main() {
-    val start1 = 27L
-    println("Collatz($start1) ha terminato in ${runTrampoline(collatz(start1))} passi.")
-    
-    val start2 = 63728127L
-    println("Collatz($start2) ha terminato in ${runTrampoline(collatz(start2))} passi.")
+    println(runTrampoline(collatz(27L))) //111
+    println(runTrampoline(collatz(63728127L))) //949
 }
+
+//java -Xss136k -jar trampoline-kotlin.jar
