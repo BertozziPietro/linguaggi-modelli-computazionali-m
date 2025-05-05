@@ -104,25 +104,18 @@ S → d S b | A B
 A → A a | ε  
 B → b B | c
 
-LEFTCTXLR(0)(Z) = { ε }
-LEFTCTXLR(0)(S) ⊇ LEFTCTXLR(0)(Z) • { ε }
-LEFTCTXLR(0)(S) ⊇ LEFTCTXLR(0)(S) • { d }
-LEFTCTXLR(0)(A) ⊇ LEFTCTXLR(0)(S) • { ε }
-LEFTCTXLR(0)(A) ⊇ LEFTCTXLR(0)(A) • { ε }
-LEFTCTXLR(0)(B) ⊇ LEFTCTXLR(0)(S) • { A }
-LEFTCTXLR(0)(B) ⊇ LEFTCTXLR(0)(B) • { b }
-LEFTCTXLR(0)(Z) = { ε }
-LEFTCTXLR(0)(S) = { d* }
-LEFTCTXLR(0)(A) = { d* }
-LEFTCTXLR(0)(B) = { d* A b* }
+LEFTCTX(Z) = { ε }
+LEFTCTX(S) = LEFTCTX(S) • { d } = { d* }
+LEFTCTX(A) = (LEFTCTX(S) • { ε }) ∪ (LEFTCTX(A) • { ε }) = { d* }
+LEFTCTX(B) = (LEFTCTX(S) • { A }) ∪ (LEFTCTX(B) • { b }) = { d* A b* }
 
-CTXLR(0)(Z → S)     = { S }
-CTXLR(0)(S → d S b) = { d* d S b } = { d⁺ S b }
-CTXLR(0)(S → AB)    = { d* A B }
-CTXLR(0)(A → a A)   = { d* a A }
-CTXLR(0)(A → ε)     = { d* }
-CTXLR(0)(B → b B)   = { d* A b* b B } = { d* A b⁺ B }
-CTXLR(0)(B → c)     = { d* A b* c }
+LR(0)CTX(Z → S)     = { S }
+LR(0)CTX(S → d S b) = { d* d S b } = { d⁺ S b }
+LR(0)CTX(S → AB)    = { d* A B }
+LR(0)CTX(A → a A)   = { d* a A }
+LR(0)CTX(A → ε)     = { d* }
+LR(0)CTX(B → b B)   = { d* A b* b B } = { d* A b⁺ B }
+LR(0)CTX(B → c)     = { d* A b* c }
 ```
 
 Dalle produzione di A → ε risultano numerosi conflitti: il contesto in questione è prefisso proprio del contesto di molte altre produzioni.  
@@ -131,23 +124,23 @@ La grammatica non è LR(0).
 ## Analisi SRL(1)
 
 ```
-Z → S
+Z → S $
 S → d S b | A B  
 A → A a | ε  
 B → b B | c
 
-FOLLOW1(Z) = { $ }
-FOLLOW1(S) = { b, $ }
+FOLLOW1(Z) = { ε }
+FOLLOW1(S) = { $, b }
 FOLLOW1(A) = { b, c, a }
-FOLLOW1(B) = { b, $ }
+FOLLOW1(B) = { $, b }
 
-CTXSLR(1)(Z → S)     = { S } • { ε } = { S }
-CTXSLR(1)(S → d S b) = { d⁺ S b } • { b, $ } = { d⁺ S b b + d⁺ S b $ } 
-CTXSLR(1)(S → AB)    = { d* A B } • { b, $ } = { d* A B b + d* A B $ }
+CTXSLR(1)(Z → S)     = { S $ }
+CTXSLR(1)(S → d S b) = { d⁺ S b } • { $, b } = { d⁺ S b $ + d⁺ S b b } 
+CTXSLR(1)(S → AB)    = { d* A B } • { $, b } = { d* A B $ + d* A B b }
 CTXSLR(1)(A → a A)   = { d* a A } • { b, c, a } = { d* a A b + d* a A c + d* a A a}
 CTXSLR(1)(A → ε)     = { d* } • { b, c, a } = { d* b + d* c + d* a }
-CTXSLR(1)(B → b B)   = { d* A b⁺ B } • { b, $ } = { d* A b⁺ B b + d* A b⁺ B $}
-CTXSLR(1)(B → c)     = { d* A b* c } • { b, $ } = { d* A b⁺ c b + d* A b⁺ c $}
+CTXSLR(1)(B → b B)   = { d* A b⁺ B } • { $, b } = { d* A b⁺ B $ + d* A b⁺ B b }
+CTXSLR(1)(B → c)     = { d* A b* c } • { $, b } = { d* A b⁺ c $ + d* A b⁺ c b }
 ```
 
 A colpo d'occhio potrebbe sembrare che le stringhe d* a appartenenti al contesto di A → ε possano collidere con le stringhe appartenenti al contato di A → a A.  
