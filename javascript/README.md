@@ -26,12 +26,12 @@ E' quindi un modello object-based, ma non propriamente object-oriented nel senso
 
 Ogni oggetto in JavaScript è creato da una funzione costruttrice.   
 Questa funzione, al momento della costruzione di un oggetto, gli assegna un prototipo, ovvero un altro oggetto da cui erediterà proprietà e metodi, che in un secondo momento possono però essere soggetti a modifiche.
-In un modello così dinamico è bene che ogni oggetto tiene traccia del costruttore che lo ha creato; e la proprietà in questione è `constructor`.  
+In un modello così dinamico è bene che ogni oggetto tenga traccia del costruttore che lo ha creato; e la proprietà in questione è `constructor`.  
 In questo senso, la funzione costruttrice ricopre il ruolo che, nei linguaggi class-based, spetta alla classe: definisce le caratteristiche comuni ad oggetti della stessa categoria.  
 La proprietà `prototype` è detta prototipo di costruzione e punta all’oggetto che il costruttore affibbierà agli oggetti costruiti.
 
 Tutti i prototipi in JavaScript condividono un antenato comune: `Object.prototype`, detto anche prototipo capostipite. In `__proto__` si trova il riferimento al prototipo che precede nella catena prototipale.  
-Il `__proto__` di `Object.prototype` è null, e questo segna il termine della catena prototipale.
+Il `__proto__` di `Object.prototype` è null, e questo segna il termine della catena prototipale.  
 Utilizzando quindi `prototype` e `__proto__` si può [toccare con mano](prototype-model.js) il modello sottostante.
 
 ### ⚠️ Prototype Pollution
@@ -40,7 +40,7 @@ In un modello così dinamico sono quindi possibili due tipi particolarmente inte
 1. Il type augmenting che aggiungere/togliere proprietà a un prototipo già in uso con effetto immediato e retroattivo, che ci interessa maggiormente in questa analisi.
 2. La sostituzione del prototipo di costruzione che altera le catene di ereditarietà padre-figlio future, che non approfondiamo in questa analisi.
 
-Il type augmenting introduce la vulnerabilità di prototype pollution.
+Il type augmenting introduce la vulnerabilità di prototype pollution.  
 La prototype pollution consente a un attaccante di manipolare il comportamento di un’applicazione JavaScript modificando oggetti globali come `Object.prototype`.  
 Si sfrutta la capacità degli oggetti JavaScript di ereditare le proprietà lungo la prototype chain.  
 Se un attaccante riesce a [iniettare o sovrascrivere](prototype-pollution.js) proprietà nel prototype globale, può alterare il comportamento di tutti gli oggetti dell'applicazione, anche quelli creati in modo legittimo.
