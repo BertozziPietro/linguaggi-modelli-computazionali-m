@@ -83,14 +83,8 @@ Nel nostro caso, tale condizione è soddisfatta: l’analisi LL(1) ha quindi avu
 
 Tuttavia, per raggiungere questo risultato, è stato necessario eliminare la ricorsione sinistra.
 Se l’obiettivo è costruire un semplice riconoscitore, questa trasformazione è accettabile.
-Al contrario, se si intende realizzare un interprete o un compilatore, la trasformazione può risultare problematica, in quanto modifica la struttura delle derivazioni e quindi la semantica del linguaggio.
-
-Proseguiamo, prima con un riconoscitore in prolog, e poi con l’analisi LR.
-
-## Esempio in Prolog di Push-Down Automaton
-
-Usiamo la grammatica senza ricorsione sinistra in un [PDA deterministico scritto in Prolog](s.pl).  
-Questa implementazione Prolog è semplice ed intuitiva, ma è limitata ai linguaggi LL(1).
+Al contrario, se si intende realizzare un interprete o un compilatore, la trasformazione può risultare problematica, in quanto modifica la struttura delle derivazioni e quindi la semantica del linguaggio.  
+Proseguiamo con l’analisi LR.
 
 ## Analisi LR(0) e Identificazione dei Conflitti
 
