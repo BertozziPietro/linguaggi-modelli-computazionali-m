@@ -16,7 +16,7 @@ Il titolo della attività progettuale realizzata è [Challenge a tema: Linguaggi
 1. [Grammatica: analisi formale](./grammar/)  
     1.1 *Presentazione della grammatica in Esame.*  
     1.2 *Pumping Lemma per dimostrare che la grammatica non è regolare.*  
-    1.3 *Esempio in Prolog di riconoscitore a stati.*  
+    1.3 *Esempio in Prolog di riconoscitore a stati finiti.*  
     1.4 *Analisi LL(1) dopo opportune trasformazioni.*  
     1.5 *Esempio in Prolog di push-down automaton.*  
     1.6 *Analisi LR(0) e identificazione dei conflitti.*  
@@ -27,15 +27,14 @@ Il titolo della attività progettuale realizzata è [Challenge a tema: Linguaggi
     2.2 *I limiti del TRO e i trampolini.*  
     2.3 *Esempi in JavaScript, Kotlin e Scala.*
 
-1. [Scala: ](./scala/)  
-    3.1 *Curring*
-    3.2 *Call by Name*
-    3.3 *Block like sintax*
-
-    3.1 *Costruire nuovi costrutti*
-    3.2 *Tratti*
-
+1. [Scala: costrutti e comportamenti estensibili](./scala/)  
+    3.1 *Ingredienti e Ricetta per Nuovi Costrutti.*  
+    3.2 *Tratti e Stackable Behaviur.*
 
 1. [JavaScript: linguaggio dinamico ma vulnerabile](./javascript/)  
     4.1 *Type coercion e JSFuck con Function.*  
     4.2 *Modello a prototipi e prototype pollution.*
+
+## Menzione d'Onore
+
+Il programma prolog [family.pl](family.pl), purtroppo, non è stato incluso nella discussione dell'esame.

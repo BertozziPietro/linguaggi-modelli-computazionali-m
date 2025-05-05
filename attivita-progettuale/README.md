@@ -1,11 +1,8 @@
-# Attività Progettuale di Linguaggi e Modelli Computazionali M
+# Challenge a tema: Linguaggi
 
-L’attività progettuale proposta consiste nella **progettazione, implementazione e presentazione di due** ***challenge***, a tema **linguaggi e modelli computazionali**.
+L’[attività progettuale di linguaggi e modelli computazionali m](challenge-linguaggi.pdf) che propongo consiste nella **progettazione, implementazione e presentazione di due** ***challenge***, a tema **linguaggi e modelli computazionali**.
 
 Il funzionamento delle challenge si ispira agli argomenti trattati nel corso di **Linguaggi e Modelli Computazionali M**, tenuto dal **Professor Enrico Denti**.
-
-Le challenge sono esercizi di **sicurezza informatica**, progettati per affinare e dimostrare competenze pratiche.
-I partecipanti dovranno risolvere ogni sfida per recuperare una *flag*, ossia un'informazione nascosta.
 
 ## Challenge
 

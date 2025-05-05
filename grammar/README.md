@@ -1,4 +1,4 @@
-# Grammatica: analisi formale
+# Grammatica: Analisi Formale
 
 ## Presentazione della Grammatica in Esame
 
@@ -95,7 +95,7 @@ Questa implementazione Prolog è semplice ed intuitiva, ma è limitata ai lingua
 ## Analisi LR(0) e Identificazione dei Conflitti
 
 L'aggiunta della produzione Z → S in una grammatica per l'analisi LR è prassi standard per due motivi.
-In primo luogo, garantisce che la riduzione a Z coincida con l'accept della frase.
+In primo luogo, garantisce che la riduzione a Z coincida con l'accept della frase.  
 In secondo luogo, fornisce un caso base nel calcolo dei contesti sinistri, che è tipicamente ricorsivo.
 
 ```
@@ -148,8 +148,8 @@ CTXSLR(1)(A → a A)   = { d* a A } • { b, c, a } = { d* a A b + d* a A c + d*
 CTXSLR(1)(A → ε)     = { d* } • { b, c, a } = { d* b + d* c + d* a }
 CTXSLR(1)(B → b B)   = { d* A b⁺ B } • { b, $ } = { d* A b⁺ B b + d* A b⁺ B $}
 CTXSLR(1)(B → c)     = { d* A b* c } • { b, $ } = { d* A b⁺ c b + d* A b⁺ c $}
-
-A colpo d'occhio potrebbe sembrare che le stringhe d* a appartenenti al contesto di A → ε possano collidere con le stringhe appartenenti al contato di A → a A.
-In realtà perchè una stringa sia prefisso proprio di un altra è necessario che il simbolo che segue sia un terminale; e non è questo il caso.
-La grammatica è SLR(1).
 ```
+
+A colpo d'occhio potrebbe sembrare che le stringhe d* a appartenenti al contesto di A → ε possano collidere con le stringhe appartenenti al contato di A → a A.  
+In realtà perchè una stringa sia prefisso proprio di un altra è necessario che il simbolo che segue sia un terminale; e non è questo il caso.  
+La grammatica è SLR(1).
