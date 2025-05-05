@@ -28,8 +28,8 @@ Il titolo della attività progettuale realizzata è [Challenge a tema: Linguaggi
     2.3 *Esempi in JavaScript, Kotlin e Scala.*
 
 1. [Scala: costrutti e comportamenti estensibili](./scala/)  
-    3.1 *Ingredienti e Ricetta per Nuovi Costrutti.*  
-    3.2 *Tratti e Stackable Behaviur.*
+    3.1 *Ingredienti e ricetta per nuovi costrutti.*  
+    3.2 *Tratti e stackable behaviur.*
 
 1. [JavaScript: linguaggio dinamico ma vulnerabile](./javascript/)  
     4.1 *Type coercion e JSFuck con Function.*  

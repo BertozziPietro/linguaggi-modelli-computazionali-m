@@ -47,3 +47,6 @@ suocero(S, G) :- uomo(G), genero(G, S).
 suocero(S, G) :- uomo(G), nuora(G, S).
 suocera(S, G) :- donna(G), genero(G, S).
 suocera(S, G) :- donna(G), nuora(G, S).
+
+% ?- nonno(alberto, alberto).
+% true .
