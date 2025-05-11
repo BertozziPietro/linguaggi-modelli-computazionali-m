@@ -30,11 +30,7 @@ In un modello così dinamico è bene che ogni oggetto tenga traccia del costrutt
 In questo senso, la funzione costruttrice ricopre il ruolo che, nei linguaggi class-based, spetta alla classe: definisce le caratteristiche comuni ad oggetti della stessa categoria.  
 La proprietà `prototype` è detta prototipo di costruzione e punta all’oggetto che il costruttore affibbierà agli oggetti costruiti.
 
-Tutti i prototipi in JavaScript condividono un antenato comune: `Object.prototype`, detto anche prototipo capostipite. In `__proto__` si trova il riferimento al prototipo che precede nella catena prototipale.  
-Il `__proto__` di `Object.prototype` è null, e questo segna il termine della catena prototipale.  
-Utilizzando quindi `prototype` e `__proto__` si può [toccare con mano](prototype-model.js) il modello sottostante.
-
-### ⚠️ Prototype Pollution
+### ⚠️ Type Augmenting con Prototype Pollution
 
 In un modello così dinamico sono quindi possibili due tipi particolarmente interessanti di modifiche:
 1. Il type augmenting che aggiungere/togliere proprietà a un prototipo già in uso con effetto immediato e retroattivo, che ci interessa maggiormente in questa analisi.
@@ -48,3 +44,8 @@ Se un attaccante riesce a [iniettare o sovrascrivere](prototype-pollution.js) pr
 Il funzionamento della catena di prototipi è il seguente: ogni oggetto in JavaScript ha una propria serie di proprietà, ma se non trova una determinata proprietà al suo interno, la cerca nel prototipo a cui è legato.  
 Se non la trova, continua a salire lungo la catena dei prototipi fino a raggiungere `Object.prototype`.  
 Se la proprietà non esiste nemmeno lì, il processo si ferma e il risultato è undefined.
+
+
+## 📌 Possibili Ulteriori Approfondimenti
+
+- Dettagli sul [funzionamento del modello a prototipi](prototype-model.js)

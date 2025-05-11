@@ -7,7 +7,7 @@ Il caso interessante è quello della tail recursion: ricorsione in cui la chiama
 Tail recursion e iterazione sono quindi, di fatto, lo stesso processo computazionale espresso con due forme diverse e di conseguenza il risultato a runtime è il medesimo.  
 La ricorsione in coda è un costrutto sintatticamente ricorsivo che dà luogo a un processo computazionale iterativo, che come tale computa in avanti; mentre il processo computazionale ricorsivo computa all'indietro.
 
-## ⚙️ I Limiti della TRO e i Trampolini
+## ⚙️ Le potenzialità e i Limiti della TRO e i Trampolini
 
 La Tail Recursion Optimization (TRO) consente al compilatore di trasformare una chiamata ricorsiva in coda in una forma iterativa, evitando l’allocazione di un nuovo frame nello stack.  
 In pratica, la chiamata ricorsiva viene sostituita con un salto diretto (goto) verso l’inizio della funzione, rendendo l’esecuzione equivalente a un ciclo, sia in termini di memoria che di prestazioni.
@@ -29,3 +29,8 @@ Nel caso di linguaggi strongly typed l'implementaizone è più complessa; il cas
 
 Segue ora un [esempio in Kotlin](trampoline.kt), linguaggio in cui la TRO è disponibile su richiesta.  
 Si utilizza `tailrec` ottimizzare con TRO il trampolino stesso, che alterna le diverse funzioni che si susseguono l'una all'altra.
+
+## 📌 Possibili Ulteriori Approfondimenti
+
+- [Trampolino in C#](trampoline.cs)
+- [Trampolino in Scala](trampoline.scala)

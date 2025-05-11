@@ -1,4 +1,4 @@
-# Scala: Costrutti e Comportamenti Estensibili
+# Scala: Costruire Nuovi Costrutti
 
 ## 👨‍🍳 Ingredienti e Ricetta per Nuovi Costrutti
 
@@ -14,6 +14,8 @@ La call-by-name è un meccanismo che permette di ritardare l’esecuzione di un 
 Il currying è una tecnica che consiste nel trasformare una funzione che prende più argomenti in una serie di funzioni, ciascuna con un singolo argomento.  
 In ogni situaizone in cui vi sia solo un argomento, si può usare la sintassi con le graffe { ... } invece delle parentesi tonde (...), rendendo il codice più simile a un blocco.  
 
+## 🛠️ Esempio ed Utilizzo del Nuovo Costrutto WriteFile
+
 Seguono la [definizione di nuovi costrutti](dslFiles.scala) che semplificano le operazioni di lettura e scrittura su file, e un  semplice [esempio del loro utilizzo](collatzFiles.scala).  
 
 L'espressività dei nuovi costrutti così definiti può essere ulteriormente potenziata dalle chiusure e dalle funzioni parzialmente specificate.  
@@ -22,19 +24,7 @@ Questo rende i blocchi più potenti e flessibili, perchè possono accedere allo 
 Le funzioni parzialmente specificate permettono di creare nuove funzioni a partire da altre, fissando alcuni parametri.
 È utile perché rende il codice più modulare, componibile e leggibile, specialmente in contesti come DSL o flussi di operazioni dove una parte si ripete.  
 
-## Tratti e Stackable Behaviour
+## 📌 Possibili Ulteriori Approfondimenti
 
-### 🧩 Tratti
-
-Scala supera le interfacce classiche, introducendo i tratti che sono più simili a classi che a interfacce, possono contenere codice, definiscono un tipo e supportano una nuova forma di composizionalità: il MIX-IN.  
-Una classe estende una superclasse (ereditarietà singola) ma può mixarsi con un numero arbitrario di tratti, che vengono
-composti assieme mediante linearizzazione e il risultato è uno stackable behaviour.
-
-### 📚 Stackable Behaviour
-
-Normalmente la composizione è raggiunta risolvendo dinamicamente a runtime i riferimenti super.x a dati o metodi di un tratto.  
-Il concetto di stackable behaviour è reinterpretato: non si usa super, ma si costruisce manualmente uno stack di comportamenti.  
-Sebbene non venga utilizzato il classico meccanismo di stackable traits tramite abstract override e super (tipico della stackable modification pattern), l'[esempio proposto](realStackable.scala) ne conserva lo spirito compositivo: più tratti possono essere mischiati per sommare effetti, senza che uno sovrascriva l'altro.  
-
-Questo approccio potrebbe avere anche utilizzi in scenari applicativi concreti come nei Middleware nei Web Framework dove è comune avere pipeline di funzioni che processano una richiesta in sequenza (logging, autenticazione, validazione).  
-Un altro scenario possibile è rappresentato dagli engine per giochi o sistemi a eventi, dove si potrebbe voler registrare azioni da eseguire in sequenza, in risposta a un input: ogni modulo potrebbe scrivere su una coda di eventi di risposta.
+- Matching di variabili e oggetti (analisi del [trampolino in kotlin](../recursion/trampoline.kt) sotto una nuova luce)
+- Tratti e [stackable behaviour](realStackable.scala)
